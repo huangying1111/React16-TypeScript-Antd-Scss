@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './pages/App'
+import App from './pages/App/App'
 import ErrorBoundary from './components/ErrorBoundary'
 import registerServiceWorker from './registerServiceWorker'
 ReactDOM.render(

@@ -1,23 +1,23 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, ReactChild } from 'react'
 const initialState = {
     hasError: false
 }
-type StateType = {
+interface IState {
     hasError: boolean
 }
-type PropsType = {
-    children: any
+interface IProps {
+    children: ReactChild
 }
-export default class ErrorBoundary extends PureComponent<PropsType, StateType> {
+export default class ErrorBoundary extends PureComponent<IProps, IState> {
     componentDidCatch() {
         this.setState({ hasError: true })
     }
-    readonly state: StateType = initialState
+    readonly state: IState = initialState
     render() {
         const { hasError } = this.state
         const { children } = this.props
         if (hasError) {
-            return <h1>Something went wrong.</h1>
+            return <h1 style={{textAlign: 'center', marginTop: 20}}>我是ErrorBoundary</h1>
         }
         return children
     }
