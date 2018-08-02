@@ -30,7 +30,7 @@ export const themes: { light: IThemes, dark: IThemes } = {
     },
 }
 export const ThemeContext = React.createContext({
-    theme: themes.light, list: [newInfo], add: (item: ItemType):void => {}
+    theme: themes.light, list: [newInfo], add: (item: ItemType):void => {}, changeChecked: (checked: boolean): void => {}
 })
 
 export interface ItemType {

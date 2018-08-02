@@ -1,32 +1,40 @@
-import React, { PureComponent } from 'react'
+import React, { SFC } from 'react'
 import { ThemeContext, ItemType } from '../CreateContext'
 import Item from './Item'
 import './ItemList.scss'
-const initialState = {
-}
-interface IState {
-}
-interface IProps {
-}
-export default class ItemList extends PureComponent<IProps, IState> {
-    constructor(props: IProps) {
-        super(props)
-    }
-    readonly state: IState = initialState
-    render() {
-        return (
-            <ThemeContext.Consumer>
-                {
-                    ({ theme, list }) => (
-                        <div className="itemList"
-                            style={{ backgroundColor: theme.background }} >
-                            {
-                                list.map((item: ItemType) => <Item key={item.id} {...item}/>)
-                            }
-                        </div>
-                    )
-                }
-            </ThemeContext.Consumer>
-        )
-    }
-}
+
+// export default class ItemList extends PureComponent<{}, {}> {
+//     render() {
+//         return (
+//             <ThemeContext.Consumer>
+//                 {
+//                     ({ theme, list }) => (
+//                         <div className="itemList"
+//                             style={{ backgroundColor: theme.background }} >
+//                             {
+//                                 list.map((item: ItemType) => <Item key={item.id} {...item}/>)
+//                             }
+//                         </div>
+//                     )
+//                 }
+//             </ThemeContext.Consumer>
+//         )
+//     }
+// }
+// 修改为无状态组件
+
+const ItemList: SFC<{}> = () => (
+    <ThemeContext.Consumer>
+        {
+            ({ theme, list }) => (
+                <div className="itemList"
+                    style={{ backgroundColor: theme.background }} >
+                    {
+                        list.map((item: ItemType) => <Item key={item.id} {...item} />)
+                    }
+                </div>
+            )
+        }
+    </ThemeContext.Consumer>)
+
+export default ItemList

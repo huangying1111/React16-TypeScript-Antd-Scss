@@ -8,13 +8,9 @@ export interface IPropsModal {
     onOk(): void,
     children: ReactChild
 }
-interface IState { }
-export default class Modal extends PureComponent<IPropsModal, IState> {
+export default class Modal extends PureComponent<IPropsModal, {}> {
     private root = document.getElementById('root') as HTMLElement
     private el = document.createElement('div')
-    constructor(props: IPropsModal) {
-        super(props)
-    }
     componentDidMount() {
         this.root.appendChild(this.el)
         this.el.setAttribute('class', 'modalShow')

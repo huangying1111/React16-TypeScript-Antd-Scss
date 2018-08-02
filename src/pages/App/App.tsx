@@ -7,13 +7,12 @@ const initialState = {
     themes: themes.light,
     list: [newInfo]
 }
-interface IProps { }
 interface IState {
     themes: IThemes,
     list: ItemType[]
 }
-export default class App extends PureComponent<IProps, IState> {
-    constructor(props: IProps) {
+export default class App extends PureComponent<{}, IState> {
+    constructor(props: {}) {
         super(props)
         this.changeChecked = this.changeChecked.bind(this)
         this.add = this.add.bind(this)
@@ -34,9 +33,9 @@ export default class App extends PureComponent<IProps, IState> {
         const { changeChecked, add } = this
         const { themes, list } = this.state
         return (
-            <ThemeContext.Provider value={{ theme: themes, list, add: add }}>
+            <ThemeContext.Provider value={{ theme: themes, list, add, changeChecked }}>
                 <div className="container">
-                    <TopAdd changeChecked={changeChecked} />
+                    <TopAdd />
                     <ItemList />
                 </div>
             </ThemeContext.Provider>

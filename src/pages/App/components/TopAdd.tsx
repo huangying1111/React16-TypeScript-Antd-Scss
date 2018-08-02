@@ -12,22 +12,15 @@ interface IState {
     number: number,
     visible: boolean
 }
-interface IProps {
-    changeChecked(checked: boolean): void
-}
-export default class TopAdd extends PureComponent<IProps, IState> {
-    constructor(props: IProps) {
+export default class TopAdd extends PureComponent<{}, IState> {
+    constructor(props: {}) {
         super(props)
-        this.onChange = this.onChange.bind(this)
         this.addHandle = this.addHandle.bind(this)
         this.onCancel = this.onCancel.bind(this)
         this.onOk = this.onOk.bind(this)
         this.addError = this.addError.bind(this)
     }
     readonly state: IState = initialState
-    private onChange(checked: boolean): void {
-        this.props.changeChecked(checked)
-    }
     private addHandle(): void {
         this.setState({ visible: true })
     }
@@ -43,32 +36,34 @@ export default class TopAdd extends PureComponent<IProps, IState> {
         })
         this.setState({ visible: false })
     }
-    private addError() :void {
-        this.setState({number: 1})
+    private addError(): void {
+        this.setState({ number: 1 })
     }
     render() {
-        const { onChange, addHandle, onCancel, addError } = this
+        const { addHandle, onCancel, addError } = this
         const { visible, number } = this.state
-        if(number === 1) return new Error()
+        if (number === 1) return new Error()
         return (
             <ThemeContext.Consumer>
                 {
-                    ({ theme, list, add }) => (
+                    ({ theme, list, add, changeChecked }) => (
                         <div className="topAdd"
                             style={{ backgroundColor: theme.background }}>
                             <div>
                                 <Button
-                                onClick={addHandle}
-                                type={theme.type === 'light' ? "primary" : "default"}
-                                icon="plus" />
+                                    onClick={addHandle}
+                                    type={theme.type === 'light' ? "primary" : "default"}
+                                    icon="plus" />
                                 <Button
                                     className="ml-10"
                                     onClick={addError}
                                     type={theme.type === 'light' ? "primary" : "default"}
                                 >Error Boundaries</Button>
                             </div>
-                            <Switch defaultChecked={true} onChange={onChange} />
-                            {visible && <Modal theme={theme} onCancel={onCancel} onOk={this.onOk.bind(this, add)}>
+                            <Switch defaultChecked={true} onChange={changeChecked} />
+                            {visible && <Modal theme={theme}
+                                onCancel={onCancel}
+                                onOk={this.onOk.bind(this, add)}>
                                 <React.Fragment>
                                     <p>新增todo</p>
                                     <div>1111</div>
