@@ -23,7 +23,7 @@ import './ItemList.scss'
 // }
 // 修改为无状态组件
 
-const ItemList: SFC<{}> = () => (
+const ItemList: SFC = () => (
     <ThemeContext.Consumer>
         {
             ({ theme, list }) => (

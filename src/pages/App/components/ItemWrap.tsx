@@ -1,6 +1,6 @@
 import React, { PureComponent, ComponentType } from 'react'
 import { ThemeContext, IThemes } from '../CreateContext'
-interface IProps extends Object {
+interface IProps {
     theme: IThemes
 }
 export default (TitleComponent: ComponentType<IProps>) => {
