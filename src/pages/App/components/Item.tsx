@@ -1,7 +1,8 @@
 import React, { SFC } from 'react'
 import { ItemType, IThemes } from '../CreateContext'
-import ItemWrap from './ItemWrap'
 import './Item.scss'
+import ItemWrap from './ItemWrap'
+
 interface IProps extends ItemType {
     theme: IThemes
 }

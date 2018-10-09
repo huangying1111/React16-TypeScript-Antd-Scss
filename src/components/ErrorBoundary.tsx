@@ -9,16 +9,16 @@ interface IProps {
     children: ReactChild
 }
 export default class ErrorBoundary extends PureComponent<IProps, IState> {
-    componentDidCatch() {
-        this.setState({ hasError: true })
-    }
-    readonly state: IState = initialState
-    render() {
+    public readonly state: IState = initialState
+    public render() {
         const { hasError } = this.state
         const { children } = this.props
         if (hasError) {
             return <h1 style={{textAlign: 'center', marginTop: 20}}>我是ErrorBoundary</h1>
         }
         return children
+    }
+    public componentDidCatch() {
+        this.setState({ hasError: true })
     }
 }

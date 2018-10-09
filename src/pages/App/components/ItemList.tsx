@@ -1,5 +1,5 @@
 import React, { SFC } from 'react'
-import { ThemeContext, ItemType } from '../CreateContext'
+import { ItemType, ThemeContext } from '../CreateContext'
 import Item from './Item'
 import './ItemList.scss'
 

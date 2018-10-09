@@ -1,10 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './pages/App/App'
+import { Provider } from 'react-redux'
 import ErrorBoundary from './components/ErrorBoundary'
+import App from './pages/App/App'
+import store from './redux/store/store'
 import registerServiceWorker from './registerServiceWorker'
+
 ReactDOM.render(
-  <ErrorBoundary><App /></ErrorBoundary>,
+  <Provider store={store}>
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  </Provider>,
   document.getElementById('root') as HTMLElement
 )
 registerServiceWorker()

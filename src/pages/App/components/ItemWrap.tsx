@@ -1,12 +1,12 @@
-import React, { PureComponent, ComponentType } from 'react'
-import { ThemeContext, IThemes } from '../CreateContext'
+import React, {  ComponentType, PureComponent } from 'react'
+import { IThemes, ThemeContext } from '../CreateContext'
 interface IProps {
     theme: IThemes
 }
 export default (TitleComponent: ComponentType<IProps>) => {
     return (Component: ComponentType<IProps>) => {
         return class ItemWrap extends PureComponent {
-            render() {
+            public render() {
                 return (
                     <ThemeContext.Consumer>
                         {

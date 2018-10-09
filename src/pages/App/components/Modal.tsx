@@ -1,24 +1,25 @@
+import { Button } from 'antd'
 import React, { PureComponent, ReactChild } from 'react'
 import ReactDOM from 'react-dom'
-import { Button } from 'antd'
 import { IThemes } from '../CreateContext'
 export interface IPropsModal {
+    children: ReactChild,
     theme: IThemes,
     onCancel(): void,
-    onOk(): void,
-    children: ReactChild
+    onOk(): void
+    
 }
 export default class Modal extends PureComponent<IPropsModal, {}> {
     private root = document.getElementById('root') as HTMLElement
     private el = document.createElement('div')
-    componentDidMount() {
+    public componentDidMount() {
         this.root.appendChild(this.el)
         this.el.setAttribute('class', 'modalShow')
     }
-    componentWillUnmount() {
+    public componentWillUnmount() {
         this.root.removeChild(this.el)
     }
-    render() {
+    public render() {
         const { theme, onCancel, onOk, children } = this.props
         return ReactDOM.createPortal(
             <React.Fragment>
