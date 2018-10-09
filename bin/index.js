@@ -31,7 +31,10 @@ inquirer
     }
   ])
   .then(answers => {
-    (async function test() {
+    ;(async function test() {
       await shell.exec('conventional-changelog -p angular -i CHANGELOG.md -s')
     })()
+    shell.exec(
+      'git add "CHANGELOG.md" && git commit -m "CHANGELOG.md" && git merge origin/develop && git push'
+    )
   })
