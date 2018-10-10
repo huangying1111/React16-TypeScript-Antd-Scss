@@ -1,5 +1,3 @@
-#! /bin/bashi
-
 const inquirer = require('inquirer')
 const shell = require('shelljs')
 
