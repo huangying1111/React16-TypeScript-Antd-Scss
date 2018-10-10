@@ -4,6 +4,7 @@
 
 ### Features
 
+* CHANGELOG.md ([4cc5dae](https://github.com/huangying1111/React16-TypeScript-Antd-Scss/commit/4cc5dae))
 * CHANGELOG.md ([ad6da24](https://github.com/huangying1111/React16-TypeScript-Antd-Scss/commit/ad6da24))
 * 新增CHANGELOG更新方法 ([0b10400](https://github.com/huangying1111/React16-TypeScript-Antd-Scss/commit/0b10400))
 
