@@ -17,7 +17,7 @@
     "typesafe-actions": "^2.0.4"
   },
   "scripts": {
-    "dev": "node bin/index",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add 'CHANGELOG.md' && git commit -m 'feat: CHANGELOG.md' && git merge origin/develop && git push",
     "start": "react-app-rewired start --scripts-version react-scripts-ts",
     "build": "react-app-rewired build --scripts-version react-scripts-ts",
     "test": "react-app-rewired test --env=jsdom --scripts-version react-scripts-ts",
