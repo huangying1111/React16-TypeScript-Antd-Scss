@@ -1,3 +1,5 @@
+import { Button } from 'antd'
+
 import React, { SFC } from 'react'
 import { compose, lifecycle, onlyUpdateForKeys, pure, shouldUpdate, withHandlers, withState, withStateHandlers } from 'recompose'
 
@@ -14,10 +16,10 @@ export const Base: SFC<IProps> = ({ name, title, content }) => {
   const time = new Date
   return (
     <p>
-        <span>时间{time.getTime()}  </span>
-        <span>姓名{name}  </span>
-        <span>标题{title}  </span>
-        <span>内容{content}  </span>
+        <span className="ml-10">时间{time.getTime()}  </span>
+        <span className="ml-10">姓名{name}  </span>
+        <span className="ml-10">标题{title}  </span>
+        <span className="ml-10">内容{content}  </span>
     </p>
   )
 }
@@ -41,9 +43,9 @@ export const BaseTwo: SFC<IPropsBaseTwo> = ({ name, title, content, onClick,
   return (
     <p>
         <span>时间{time.getTime()}  </span>
-        <button onClick={onClick}>姓名{name}  </button>
-        <button onClick={changeTitle}>标题{title}  </button>
-        <button onClick={changeContent}>内容{content}  </button>
+        <Button type="primary" className="ml-10" onClick={onClick}>姓名{name}  </Button> 
+        <Button type="primary" className="ml-10" onClick={changeTitle}>标题{title}  </Button> 
+        <Button type="primary" className="ml-10" onClick={changeContent}>内容{content}  </Button>
     </p>
   )
 }

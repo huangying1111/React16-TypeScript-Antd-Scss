@@ -1,19 +1,23 @@
+import { Button, Card, Steps } from 'antd'
 import React, { PureComponent } from 'react'
-import ModuleBase, {
+import {
   OnlyUpdateForKeysComponent,
   PureBaseComponent,
   ShouldUpdateComponent,
   WithStateComponent,
   WithStateHandlersComponent
 } from './ModuleBase'
-import ModuleCompose from './ModuleCompose'
+const Step = Steps.Step
+import './index.css'
 const initialState = {
+  current: 0,
   name: 'huangying',
   title: 'title',
   content: 'content',
   other: ''
 }
 interface IState {
+  current: number,
   name: string
   title: string
   content: string
@@ -22,50 +26,85 @@ interface IState {
 export default class App extends PureComponent<{}, IState> {
   public readonly state: IState = initialState
   public render() {
-    const { name, title, content } = this.state
+    const { name, title, content, current } = this.state
     return (
-      <div>
-        <div>
-          <span style={{ color: 'red' }}>compose:</span>
-          {ModuleCompose(ModuleBase)}
-        </div>
-        <div>
-          <span style={{ color: 'red' }}>Pure:</span>
+      <Card className="recomposeExp">
+        <Steps current={current} style={{ marginBottom: 8 }}>
+          <Step />
+          <Step />
+          <Step />
+          <Step />
+        </Steps>
+        {current === 0 && <Card className="steps-content">
+          <span className="title">Pure:</span>
           <PureBaseComponent name={name} title={title} content={content} />
-          <span style={{ color: 'red' }}>OnlyUpdateForKeys:</span>
+          <span className="title">OnlyUpdateForKeys:</span>
           <OnlyUpdateForKeysComponent
             name={name}
             title={title}
             content={content}
           />
-           <button onClick={this.changeTitle.bind(this, { title: '改变title' })}>
+          <Button onClick={this.changeTitle.bind(this, { title: '改变title' + (new Date).getTime() })}>
             改变title
-          </button>
-          <button onClick={this.changeTitle.bind(this, { name: '改变name' })}>
+          </Button>
+          <Button className="ml-10" onClick={this.changeTitle.bind(this, { name: '改变name' + (new Date).getTime() })}>
             改变name
-          </button>
-          <button onClick={this.changeTitle.bind(this, { other: '改变其他' })}>
+          </Button>
+          <Button className="ml-10" onClick={this.changeTitle.bind(this, { other: '改变其他' + (new Date).getTime() })}>
             改变其他
-          </button>
+          </Button>
 
-          <p style={{ color: 'red' }}>shouldUpdate:</p>
-
+        </Card>}
+        {current === 1 && <Card>
+          <p className="title">shouldUpdate:</p>
           <ShouldUpdateComponent name={name} title="渲染" content={content} />
           <ShouldUpdateComponent name={name} title={title} content={content} />
-          <button onClick={this.changeTitle.bind(this, { name: '改变name2' })}>
+          <Button onClick={this.changeTitle.bind(this, { name: '改变name2' + (new Date).getTime() })}>
             改变name
-          </button>
-        </div>
+          </Button>
+        </Card>}
 
-        <div>
-          <p style={{ color: 'red' }}>withState:</p>
+        {current === 2 && <Card className="steps-content">
+          <p className="title">withState:</p>
           <WithStateComponent />
-          <WithStateHandlersComponent/>
-        </div>
-      </div>
+        </Card>
+        }
+        {current === 3 && <Card className="steps-content">
+          <p className="title">withStateHandlers:</p>
+          <WithStateHandlersComponent />
+        </Card>
+        }
+        {this.getButtonNode()}
+      </Card>
     )
   }
   private changeTitle = (state: any) => {
     this.setState(state)
+  }
+  private next = () => {
+    const current = this.state.current + 1
+    this.setState({ current })
+  }
+
+  private prev = () => {
+    const current = this.state.current - 1
+    this.setState({ current })
+  }
+  private getButtonNode = () => {
+    const { current } = this.state
+    return <Card className="steps-action" style={{ marginTop: 8 }}>
+      {
+        current > 0
+        && (
+          <Button  onClick={this.prev}>
+            上一步
+      </Button>
+        )
+      }{
+        current < 3
+        && <Button className="ml-10" type="primary" onClick={this.next}>下一步</Button>
+      }
+      
+    </Card>
   }
 }
